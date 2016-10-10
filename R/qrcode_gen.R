@@ -48,7 +48,7 @@ qrcode_gen <- function(dataString,ErrorCorrectionLevel='L',dataOutput = FALSE, p
     #apply mask
     dataMasked <- qrMask(data,qrInfo,mask)
     if(plotQRcode){
-      heatmap(dataMasked[nrow(dataMasked):1,],Rowv = NA, Colv = NA,scale="none",col=c(wColor,bColor),labRow ='',labCol = '')
+      heatmap(dataMasked[nrow(dataMasked):1,],Rowv = NA, Colv = NA,scale="none",col=c(wColor,bColor),labRow ='',labCol = '',margins = c(0.5, 0.5))
     }
     if(dataOutput){
       return(dataMasked)
