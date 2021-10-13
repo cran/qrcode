@@ -3,9 +3,12 @@
 #' @param ECcount error correction code word count
 #'
 #' @return polynomail to generate Error correction code
+#' @author Victor Teh
+#' @family legacy
 #'
 
 polynomialGenerator <- function(ECcount) { #nolint
+  .Deprecated("qr_code")
   logTable <- create_log_table()
 
   poly <- c(0, 0)

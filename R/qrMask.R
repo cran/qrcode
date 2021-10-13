@@ -19,7 +19,10 @@
 #' @export
 #' @importFrom R.utils intToBin
 #' @importFrom stringr str_pad
+#' @author Victor Teh
+#' @family legacy
 qrMask <- function(data, qrInfo, mask) {
+  .Deprecated("qr_code")
 
   size <- 21 + (qrInfo$Version - 1) * 4
 

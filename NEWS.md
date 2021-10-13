@@ -1,3 +1,8 @@
+# qrcode 0.1.4
+
+* Re-implemented the main functions to fix bug in the legacy functions.
+* Deprecated the legacy functions.
+
 # qrcode 0.1.3
 
 * Added a `NEWS.md` file to track changes to the package.

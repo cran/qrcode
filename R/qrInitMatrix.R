@@ -4,10 +4,13 @@
 #' Each element in QRcode will be marked as different value.
 #'
 #' @param version version number of the target QRcode
+#' @author Victor Teh
+#' @family legacy
 #'
 
 
 qrInitMatrix <- function(version) {
+  .Deprecated("qr_code")
 
   size <- 21 + (version - 1) * 4
 

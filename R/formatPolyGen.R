@@ -2,10 +2,13 @@
 #'
 #' @param formatString QRcode format binary string
 #' @param polyString polynomial to create ECL for formatString
+#' @author Victor Teh
+#' @family legacy
 #'
 #'
 
 formatPolyGen <- function(formatString, polyString) {
+  .Deprecated("qr_code")
 
   formatString <- as.integer(unlist(strsplit(formatString, split = "")))
   oriFormatString <- formatString

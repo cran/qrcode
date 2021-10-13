@@ -37,33 +37,53 @@
 #' @importFrom stats heatmap
 #'
 #' @export
+#' @author Victor Teh
+#' @family legacy
 
 qrcode_gen <- function(
   dataString, ErrorCorrectionLevel = "L", dataOutput = FALSE, plotQRcode = TRUE, #nolint
   wColor = "White", bColor = "black", mask = 1, softLimitFlag = TRUE
 ) {
-  qrInfo <- qrVersionInfo(dataString, ECLevel = ErrorCorrectionLevel)
+  .Deprecated(
+    "qr_code",
+    msg = "`qrcode_gen()` has known bugs. Please use `qr_code()` instead."
+  )
+  suppressWarnings(classes = "deprecatedWarning", {
+    qrInfo <- qrVersionInfo(dataString, ECLevel = ErrorCorrectionLevel)
+  })
   if (softLimitFlag && qrInfo$Version > 10) {
     stop("Input string size too big.
 Try lower Error Correction Level or shortern the input string.")
   }
   #initialize a QRcode in a matrix
-  data <- qrInitMatrix(qrInfo$Version)
+  suppressWarnings(classes = "deprecatedWarning", {
+    data <- qrInitMatrix(qrInfo$Version)
+  })
 
   #convert data string into Binary in polynomial
-  dataPoly <- DataStringBinary(dataString, qrInfo)
+  suppressWarnings(classes = "deprecatedWarning", {
+    dataPoly <- DataStringBinary(dataString, qrInfo)
+  })
 
   #polynomial generator
-  poly <- polynomialGenerator(qrInfo$ECwordPerBlock)
+  suppressWarnings(classes = "deprecatedWarning", {
+    poly <- polynomialGenerator(qrInfo$ECwordPerBlock)
+  })
 
   #compile the final binary string.
-  allBinary <- qrInterleave(poly, dataPoly, qrInfo)
+  suppressWarnings(classes = "deprecatedWarning", {
+    allBinary <- qrInterleave(poly, dataPoly, qrInfo)
+  })
 
   #fill up all binary into the QRcode template
-  data <- qrFillUpMatrix(allBinary, data, qrInfo$Version)
+  suppressWarnings(classes = "deprecatedWarning", {
+    data <- qrFillUpMatrix(allBinary, data, qrInfo$Version)
+  })
 
   #apply mask
-  dataMasked <- qrMask(data, qrInfo, mask)
+  suppressWarnings(classes = "deprecatedWarning", {
+    dataMasked <- qrMask(data, qrInfo, mask)
+  })
   if (plotQRcode) {
     heatmap(
       dataMasked[rev(seq_len(nrow(dataMasked))), ], Rowv = NA, Colv = NA,

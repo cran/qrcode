@@ -9,8 +9,11 @@
 #' @importFrom R.utils intToBin
 #' @importFrom stringr str_pad
 #' @export
+#' @author Victor Teh
+#' @family legacy
 #'
 DataStringBinary <- function(dataString, qrInfo) { #nolint
+  .Deprecated("qr_code")
 
   if (qrInfo$mode == "0100") {
     # ##
