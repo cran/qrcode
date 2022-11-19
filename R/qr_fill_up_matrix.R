@@ -3,6 +3,6 @@
 #' @family legacy
 #' @rdname defunct
 
-qrcode_gen <- function(...) {
+qrFillUpMatrix <- function(...) { # nolint: object_name_linter.
   .Defunct("qr_code")
 }

@@ -1,8 +1,7 @@
-#' @export
 #' @author Victor Teh
 #' @family legacy
 #' @rdname defunct
 
-qrcode_gen <- function(...) {
+formatPolyGen <- function(...) { # nolint: object_name_linter.
   .Defunct("qr_code")
 }

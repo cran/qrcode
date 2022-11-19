@@ -2,7 +2,6 @@
 #' @author Victor Teh
 #' @family legacy
 #' @rdname defunct
-
-qrcode_gen <- function(...) {
+qrMask <- function(...) { # nolint: object_name_linter.
   .Defunct("qr_code")
 }
