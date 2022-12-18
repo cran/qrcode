@@ -10,8 +10,7 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 [![Lifecycle:
 stable](https://lifecycle.r-lib.org/articles/figures/lifecycle-stable.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable-1)
 ![GitHub](https://img.shields.io/github/license/thierryo/qrcode)
-[![Codecov test
-coverage](https://codecov.io/gh/thieryo/qrcode/branch/main/graph/badge.svg)](https://app.codecov.io/gh/thierryo/qrcode?branch=main)
+[![Codecov](https://codecov.io/gh/ThierryO/qrcode/branch/main/graph/badge.svg?token=uOVomusTtw)](https://app.codecov.io/gh/ThierryO/qrcode)
 ![GitHub code size in
 bytes](https://img.shields.io/github/languages/code-size/thierryo/qrcode.svg)
 ![GitHub repo
@@ -94,4 +93,5 @@ remotes::install_github("ThierryO/qrcode")
 
 The legacy function `qrcode_gen()` had several known bugs. Because of
 these bugs, we re-implemented the code from scratch in version 0.1.4. We
-created new functions. The old functions are defunct since version 0.2.
+created new functions. The old functions are defunct since version
+0.2.0.

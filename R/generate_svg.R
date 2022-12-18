@@ -87,7 +87,7 @@ generate_svg.qr_code <- function(
   dir.create(dirname(filename), showWarnings = FALSE, recursive = TRUE)
   writeLines(c(heading, svg_data, footing), filename)
   if (show) {
-    browseURL(filename)
+    browseURL(filename) # nocov
   }
   return(invisible(NULL))
 }
@@ -143,7 +143,53 @@ generate_svg.qr_wifi <- function(
   )
   writeLines(c(svg_header, svg_qrcode, svg_message, "</svg>"), filename)
   if (show) {
-    browseURL(filename)
+    browseURL(filename) # nocov
+  }
+  return(invisible(NULL))
+}
+
+#' @rdname generate_svg
+#' @export
+generate_svg.qr_logo <- function(
+    qrcode, filename, size = 300, foreground = "black", background = "white",
+    show = interactive(), ...
+) {
+  assert_that(inherits(qrcode, "qr_logo"))
+  class(qrcode) <- class(qrcode)[class(qrcode) != "qr_logo"]
+  generate_svg(
+    qrcode = qrcode, filename = filename, size = size, foreground = foreground,
+    background = background, show = FALSE, ...
+  )
+  svg_content <- readLines(filename)
+  requireNamespace("knitr", quietly = TRUE)
+  uri <- knitr::image_uri(attr(attr(qrcode, "logo"), "filename"))
+
+  vertical <- switch(
+    attr(qrcode, "logo_position")[2],
+    b = ncol(qrcode) - attr(qrcode, "logo_height") - 3,
+    c = (ncol(qrcode) - attr(qrcode, "logo_height")) / 2, t = 11
+  ) * size / ncol(qrcode)
+  horizontal <- switch(
+    attr(qrcode, "logo_position")[1], l = 11,
+    c = (ncol(qrcode) - attr(qrcode, "logo_width")) / 2,
+    r = ncol(qrcode) - 3 - attr(qrcode, "logo_width")
+  ) * size / ncol(qrcode)
+
+  paste(
+    "  <image href = \"%s\" x = \"%.1f\" y = \"%.1f\"",
+    "width = \"%.1f\" height = \"%.1f\" />"
+  ) |>
+    sprintf(
+      uri, horizontal, vertical,
+      attr(qrcode, "logo_width") * size / ncol(qrcode),
+      attr(qrcode, "logo_height") * size / ncol(qrcode)
+    ) -> img
+  n_svg <- length(svg_content)
+  svg_content[-n_svg] |>
+    c(img, svg_content[n_svg]) |>
+    writeLines(filename)
+  if (show) {
+    browseURL(filename) # nocov
   }
   return(invisible(NULL))
 }
