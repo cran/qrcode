@@ -1,3 +1,9 @@
+# qrcode 0.2.2
+
+* New `coordinates()` function returning the coordinates of the dark cells.
+* Test the QR code with `opencv::ocv_qr_detect()`.
+* Remove the defunct legacy functions.
+
 # qrcode 0.2.1
 
 * Replace the unexported `qr_logo()` by `add_logo`().
